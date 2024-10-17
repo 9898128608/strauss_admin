@@ -16,6 +16,12 @@ return Application::configure(basePath: dirname(__DIR__))
             guests: '/account/login',
             users: '/account/dashboard',
         );
+
+        $middleware->alias([
+            'isSuperAdmin' => \App\Http\Middleware\isSuperAdmin::class,
+            'isAdmin' => \App\Http\Middleware\isAdmin::class,
+            'isUser' => \App\Http\Middleware\isUser::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

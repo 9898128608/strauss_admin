@@ -33,7 +33,7 @@
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#!" id="accountDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">Hello,
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}</a>
                             <ul class="dropdown-menu border-0 shadow bsb-zoomIn" aria-labelledby="accountDropdown">
                                 <li>
@@ -49,10 +49,10 @@
     <div class="container">
         <div class="card border-0 shadow my-5">
             <div class="card-header bg-light">
-                <h3 class="h5 pt-2">User Dashboard</h3>
+                <h3 class="h5 pt-2">Dashboard</h3>
             </div>
             <div class="card-body">
-                You are logged in !!
+                {{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}
             </div>
         </div>
     </div>

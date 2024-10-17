@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel 11 Multi Auth</title>
+    <title>{{ websiteName()}}</title>
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 </head>
 
@@ -27,7 +27,7 @@
                                     @endif
 
                                     <div class="mb-5">
-                                        <h4 class="text-center">Login Here</h4>
+                                        <h4 class="text-center">{{ websiteName()}} - Login Here</h4>
                                     </div>
                                 </div>
                             </div>
@@ -56,6 +56,13 @@
                                             @enderror
                                         </div>
                                     </div>
+
+                                    <div class="col-12">
+                                        <label>
+                                            <input type="checkbox" name="remember" {{ Cookie::get('remember_me') ? 'checked' : '' }}> Remember Me
+                                        </label>
+                                    </div>
+
                                     <div class="col-12">
                                         <div class="d-grid">
                                             <button class="btn bsb-btn-xl btn-primary py-3" type="submit">Log in
