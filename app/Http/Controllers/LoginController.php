@@ -26,7 +26,14 @@ class LoginController extends Controller
 
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 
-                return redirect()->route('account.dashboard');
+
+                if (Auth::user()->role === 'admin') {
+
+                    return redirect()->route('admin.dashboard');
+                } else {
+
+                    return redirect()->route('account.dashboard');
+                }
             } else {
 
                 return redirect()->route('account.login')->with('error', 'Either email or password is incorrect.');
