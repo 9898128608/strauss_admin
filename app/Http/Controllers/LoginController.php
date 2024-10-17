@@ -11,7 +11,18 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('login');
+        if (Auth::check()) {
+
+            if (Auth::user()->role === "super-admin") {
+                return view('superadmin.dashboard');
+            } else if (Auth::user()->role === "admin") {
+                return view('admin.dashboard');
+            } else {
+                return view('dashboard');
+            }
+        } else {
+            return view('login');
+        }
     }
 
     public function authenticate(REQUEST $request)
