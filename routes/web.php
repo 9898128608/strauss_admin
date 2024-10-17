@@ -5,7 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashboardController;
 use Illuminate\Support\Facades\Route;
 
-Route::Group(['middleware' => 'guest', 'prefix' => 'account'], function () {
+Route::Group(['middleware' => 'web', 'prefix' => 'account'], function () {
     Route::get('login', [LoginController::class, 'index'])->name('account.login');
     Route::post('authenticate', [LoginController::class, 'authenticate'])->name('account.authenticate');
 });

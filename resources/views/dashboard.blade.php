@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ Auth::user()->role }}</title>
+    <title>{{ capitalizeString(Auth::user()->role) }}</title>
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 </head>
 
@@ -12,7 +12,7 @@
     <nav class="navbar navbar-expand-md bg-white shadow-lg bsb-navbar bsb-navbar-hover bsb-navbar-caret">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <strong>{{ Auth::user()->role }}</strong>
+                <strong>{{ capitalizeString(Auth::user()->role) }}</strong>
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
