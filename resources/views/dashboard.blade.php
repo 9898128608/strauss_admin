@@ -11,7 +11,7 @@
 <body class="bg-light">
     <nav class="navbar navbar-expand-md bg-white shadow-lg bsb-navbar bsb-navbar-hover bsb-navbar-caret">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="javascript:void(0);">
                 <strong>{{ capitalizeString(Auth::user()->role) }}</strong>
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
@@ -52,7 +52,7 @@
                 <h3 class="h5 pt-2">Dashboard</h3>
             </div>
             <div class="card-body">
-                {{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}
+                &nbsp;
             </div>
         </div>
     </div>
