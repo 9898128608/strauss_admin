@@ -1,6 +1,6 @@
 {
     "name": "strauss/admin",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "type": "project",
     "description": "Strauss Admin Panel Package for Laravel",
     "authors": [

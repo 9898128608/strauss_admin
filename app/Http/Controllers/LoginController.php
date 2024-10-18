@@ -12,7 +12,6 @@ class LoginController extends Controller
     public function index()
     {
         if (Auth::check()) {
-
             if (Auth::user()->role === "super-admin") {
                 return view('superadmin.dashboard');
             } else if (Auth::user()->role === "admin") {
@@ -21,6 +20,7 @@ class LoginController extends Controller
                 return view('dashboard');
             }
         } else {
+
             return view('login');
         }
     }
