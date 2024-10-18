@@ -17,6 +17,5 @@ class isUser
             Auth::logout();
             return redirect()->route('account.login')->with('error', 'Unauthorized access.');
         }
-        
     }
 }

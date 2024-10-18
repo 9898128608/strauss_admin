@@ -14,11 +14,9 @@ class isSuperAdmin
         if (Auth::user()->role === "super-admin") {
             return $next($request);
         } else {
-            
+
             Auth::logout();
             return redirect()->route('account.login')->with('error', 'Unauthorized access.');
-            
         }
-        
     }
 }

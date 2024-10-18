@@ -28,9 +28,17 @@ class LoginController extends Controller
     public function authenticate(REQUEST $request)
     {
 
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required'
+        $validator = Validator::make($request->only(['email', 'password']), [
+            'email' => 'required|email|exists:users,email',
+            'password' => [
+                'required',
+                'min:8',                  // Minimum 8 characters
+                'regex:/[a-z]/',          // At least one lowercase letter
+                'regex:/[A-Z]/',          // At least one uppercase letter
+                'regex:/[0-9]/',          // At least one number
+                'regex:/[@$!%*#?&]/'      // At least one special character
+            ],
+            'remember' => 'sometimes|boolean', // Validate "remember me" checkbox
         ]);
 
         if ($validator->passes()) {
@@ -48,21 +56,22 @@ class LoginController extends Controller
 
                 if (Auth::user()->role === 'super-admin') {
 
-                    return redirect()->route('superadmin.dashboard');
+                    return redirect()->intended('superadmin/dashboard');
                 } else if (Auth::user()->role === 'admin') {
 
-                    return redirect()->route('admin.dashboard');
+                    return redirect()->intended('admin/dashboard');
                 } else {
 
-                    return redirect()->route('account.dashboard');
+                    // return redirect()->route('account.dashboard');
+                    return redirect()->intended('account/dashboard');
                 }
             } else {
 
-                return redirect()->route('account.login')->with('error', 'Either email or password is incorrect.');
+                return redirect()->intended('account/login')->with('error', 'Either email or password is incorrect.');
             }
         } else {
 
-            return redirect()->route('account.login')->withInput()->withErrors($validator);
+            return redirect()->intended('account/login')->withInput()->withErrors($validator);
         }
     }
 
