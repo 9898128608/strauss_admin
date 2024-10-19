@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel 11 Multi Auth</title>
+    <title>{{ websiteName() }}</title>
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 </head>
 
@@ -18,17 +18,19 @@
                             <div class="row">
                                 <div class="col-12">
 
+                                    <div class="mb-5">
+                                        <h4 class="text-center">{{ websiteName() }} - Login Here</h4>
+                                    </div>
+
                                     @if (Session::has('success'))
-                                      <div class="alert alert-success">{{ Session::get('success') }}</div> 
+                                        <div class="alert alert-success">{{ Session::get('success') }}</div>
                                     @endif
 
                                     @if (Session::has('error'))
-                                      <div class="alert alert-danger">{{ Session::get('error') }}</div> 
+                                        <div class="alert alert-danger">{{ Session::get('error') }}</div>
                                     @endif
 
-                                    <div class="mb-5">
-                                        <h4 class="text-center">Login Here</h4>
-                                    </div>
+
                                 </div>
                             </div>
                             <form action="{{ route('account.authenticate') }}" method="POST">
@@ -38,7 +40,8 @@
                                         <div class="form-floating mb-3">
                                             <input type="text"
                                                 class="form-control @error('email') is-invalid @enderror" name="email"
-                                                id="email" value="{{ old('email') }}" placeholder="name@example.com">
+                                                id="email" value="{{ old('email') }}"
+                                                placeholder="name@example.com" autocomplete="off">
                                             <label for="email" class="form-label">Email</label>
                                             @error('email')
                                                 <p class="invalid-feedback">{{ $message }}</p>
@@ -49,13 +52,21 @@
                                         <div class="form-floating mb-3">
                                             <input type="password"
                                                 class="form-control @error('password') is-invalid @enderror"
-                                                name="password" id="password" value="" placeholder="Password">
+                                                name="password" id="password" value="" placeholder="Password" autocomplete="off">
                                             <label for="password" class="form-label">Password</label>
                                             @error('password')
                                                 <p class="invalid-feedback">{{ $message }}</p>
                                             @enderror
                                         </div>
                                     </div>
+
+                                    <div class="col-12">
+                                        <label>
+                                            <input type="checkbox" name="remember"
+                                                {{ Cookie::get('remember_me') ? 'checked' : '' }}> Remember Me
+                                        </label>
+                                    </div>
+
                                     <div class="col-12">
                                         <div class="d-grid">
                                             <button class="btn bsb-btn-xl btn-primary py-3" type="submit">Log in
